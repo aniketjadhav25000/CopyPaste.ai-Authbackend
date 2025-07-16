@@ -12,41 +12,48 @@ connectDB();
 
 const app = express();
 
-// Middleware
+// ✅ CORS Setup for Local + Deployed Frontend
 const allowedOrigins = [
   'http://localhost:3000',
+  process.env.FRONTEND_URL, // e.g. https://your-frontend.vercel.app
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
 
 app.use(express.json());
 
-// Route logging
+// Request Logger
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.originalUrl}`);      
   next();
 });
 
-// Routes
+// ✅ Route Imports
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const historyRoutes = require('./routes/history');
 const codeRoutes = require('./routes/code');
 const passwordRoutes = require('./routes/password');
-const chatRoutes = require('./routes/chat'); // ✅ NEW chat route
+const chatRoutes = require('./routes/chat'); // ✅ Chat route
 
-// Mount routes with /api prefix
+// ✅ Mount Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/history', historyRoutes);
 app.use('/api/code', codeRoutes);
 app.use('/api/password', passwordRoutes);
-app.use('/api/chat', chatRoutes); // ✅ Add chat API here
+app.use('/api/chat', chatRoutes);
 
-// Error handling middleware
+// ✅ Error Handling
 app.use((err, req, res, next) => {
   console.error('Server error:', err.stack);
   res.status(500).json({
@@ -56,7 +63,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
+// ✅ Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
