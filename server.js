@@ -15,7 +15,8 @@ const app = express();
 // ✅ CORS Setup for Local + Deployed Frontend
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://melodious-stroopwafel-3c8f04.netlify.app', // ✅ Your Netlify frontend
+  'https://copypaste-ai-authbackend.onrender.com',
+  'https://melodious-stroopwafel-3c8f04.netlify.app', // ✅ Add Netlify frontend
 ];
 
 
