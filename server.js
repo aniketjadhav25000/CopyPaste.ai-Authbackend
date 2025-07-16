@@ -13,12 +13,20 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:3000',
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 app.use(express.json());
 
 // Route logging
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.originalUrl}`);
+  console.log(`${req.method} ${req.originalUrl}`);      
   next();
 });
 
