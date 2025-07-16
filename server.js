@@ -16,7 +16,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
   'https://copypaste-ai-authbackend.onrender.com',
-  'https://melodious-stroopwafel-3c8f04.netlify.app', // ✅ Add Netlify frontend
+  'https://dancing-mousse-c5c6d5.netlify.app/', // ✅ Add Netlify frontend
 ];
 
 
