@@ -15,12 +15,9 @@ const app = express();
 // ✅ CORS Setup for Local + Deployed Frontend
 const allowedOrigins = [
   'http://localhost:3000',
-<<<<<<< HEAD
-  'https://copypaste-ai-authbackend.onrender.com',
-=======
-  process.env.FRONTEND_URL, // e.g. https://your-frontend.vercel.app
->>>>>>> 8ae613f7dc154234065619e3781388503b291d59
+  'https://melodious-stroopwafel-3c8f04.netlify.app', // ✅ Your Netlify frontend
 ];
+
 
 
 app.use(cors({
