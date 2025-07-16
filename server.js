@@ -15,8 +15,9 @@ const app = express();
 // ✅ CORS Setup for Local + Deployed Frontend
 const allowedOrigins = [
   'http://localhost:3000',
-  process.env.FRONTEND_URL, // e.g. https://your-frontend.vercel.app
+  'https://copypaste-ai-authbackend.onrender.com',
 ];
+
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -28,6 +29,7 @@ app.use(cors({
   },
   credentials: true,
 }));
+
 
 app.use(express.json());
 
